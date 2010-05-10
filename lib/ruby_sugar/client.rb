@@ -97,6 +97,17 @@ module RubySugar
       end
     end
 
+    def get_relationships(mod,id,rmod,rmod_query=nil,deleted=0)
+      begin
+        validate_session
+
+        result = @ws_proxy.get_relationships(@session['id'], mod, id, rmod,rmod_query,deleted)
+        return result
+      rescue => err
+        puts err
+      end
+    end
+
     def get_server_version
       begin
         validate_session
