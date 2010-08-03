@@ -100,8 +100,17 @@ module RubySugar
     def get_relationships(mod,id,rmod,rmod_query=nil,deleted=0)
       begin
         validate_session
-
         result = @ws_proxy.get_relationships(@session['id'], mod, id, rmod,rmod_query,deleted)
+        return result
+      rescue => err
+        puts err
+      end
+    end
+
+    def set_relationship(data)
+      begin
+        validate_session
+        result = @ws_proxy.set_relationship(@session['id'], data)
         return result
       rescue => err
         puts err
